@@ -1,6 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getSmurfs, addSmurf, updateSmurf, changeUpdate, deleteSmurf } from '../actions'
+import './App.css';
+import { Card, CardTitle, CardText } from 'reactstrap';
+import logo from '../logo.jpg'
+
 // import DeleteFriend from './DeleteFriend'
 // import UpdateFriend from './UpdateFriend'
 // import AddFriend from './AddFriend'
@@ -63,21 +67,21 @@ class Smurfs extends React.Component {
   
     render() {
         if (this.props.updatingSmurf) {return(
-            <Form inline>
+            <Form className="newform" inline>
             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-            <Label for="exampleEmail" className="mr-sm-2">New Smurf Name</Label>
+            <Label for="exampleEmail" className="mr-sm-2">Edit Smurf Name</Label>
             <Input type="name" name="name" id="exampleEmail" placeholder="smurf name..." 
                     value={this.state.newSmurf.name}
                     onChange={this.handleChange}/>
             </FormGroup>
             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-            <Label for="examplePassword" className="mr-sm-2">New Smurf Age</Label>
+            <Label for="examplePassword" className="mr-sm-2">Edit Smurf Age</Label>
             <Input type="age" name="age" id="" placeholder="age..." 
                     value={this.state.newSmurf.age}
                     onChange={this.handleChange}/>
             </FormGroup>
             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-            <Label for="examplePassword" className="mr-sm-2">New Smurf Height</Label>
+            <Label for="examplePassword" className="mr-sm-2">Edit Smurf Height</Label>
             <Input type="height" name="height" id="" placeholder="height..." 
                     value={this.state.newSmurf.height}
                     onChange={this.handleChange}/>
@@ -90,17 +94,21 @@ class Smurfs extends React.Component {
             )   
         }
     return(
-        <div >
-                <h1>{this.props.smurfs.map((smurf, key) => {
+        <div className="smurfs" >
+                {this.props.smurfs.map((smurf, key) => {
                     return(
-                    <h4 key={key}>
-                        {smurf.name}
-                        <Badge onClick={(event) => this.changeUpdate(event, smurf)} color="secondary" size="sm">update</Badge>
-                        <Button color="danger" onClick={(event) => this.deleteSmurf(event, smurf)}>Delete Smurf</Button>
-                    </h4>
+                        <Card key={key} body inverse color="primary">
+                            <img src={logo} />
+                            <CardTitle>{`Name: ${smurf.name}`}</CardTitle>
+                            <CardText>{`Age: ${smurf.age}`}</CardText>
+                            <CardText>{`Height: ${smurf.height}`}</CardText>
+                            <Button onClick={(event) => this.changeUpdate(event, smurf)} color="secondary" size="sm">Edit Smurf</Button>
+                            <Button color="danger" onClick={(event) => this.deleteSmurf(event, smurf)} size="sm">Delete Smurf</Button>
+                        </Card>
                     )
-                })}</h1>
-        <Form inline>
+                })}
+                <h4>Add a New Smurf to the Village:</h4>
+        <Form className="newform" inline>
             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
             <Label for="exampleEmail" className="mr-sm-2">New Smurf Name</Label>
             <Input type="name" name="name" id="exampleEmail" placeholder="smurf name..." 

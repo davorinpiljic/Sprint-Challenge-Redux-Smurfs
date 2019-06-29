@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import Smurfs from './Smurfs'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own. 
@@ -14,6 +17,8 @@ class App extends Component {
         <div>Welcome to your Redux version of Smurfs!</div>
         <div>Start inside of your `src/index.js` file!</div>
         <div>Have fun!</div>
+        <Link to="/smurfs" >Smurfs</Link>
+        <Route path="/smurfs" component={Smurfs} />
       </div>
     );
   }

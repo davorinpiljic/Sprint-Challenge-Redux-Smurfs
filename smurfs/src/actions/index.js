@@ -5,6 +5,8 @@ export const CREATING = 'CREATING'
 export const DELETING = 'DELETING'
 export const UPDATING = 'UPDATING' 
 export const DATA_SUCCESS = 'DATA_SUCCESS' 
+export const UPDATE_SUCCESS = 'UPDATE_SUCCESS' 
+
 export const DATA_FAIL = 'DATA_FAIL' 
 
 export const getSmurfs = () => dispatch => {
@@ -30,6 +32,27 @@ export const addSmurf = (newSmurf) => dispatch => {
       dispatch({type: DATA_FAIL, payload: error})
     })
 }
+
+export const updateSmurf = (newSmurf) => dispatch => {
+  dispatch({type: FETCHING})
+  dispatch({type: UPDATING})
+
+  console.log(newSmurf)
+  axios
+    .put(`http://localhost:3333/smurfs/${newSmurf.id}`, newSmurf)
+    .then(response => {
+      dispatch({type: UPDATE_SUCCESS, payload: response.data})
+    })
+    .catch(error => {
+      dispatch({type: DATA_FAIL, payload: error})
+    })
+}
+
+export const changeUpdate = () => dispatch => {
+  dispatch({type: UPDATING})
+}
+
+
 
 // export const login = (creds) => dispatch => {
 //     dispatch({type: LOGGING_IN})

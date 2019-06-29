@@ -5,21 +5,8 @@ import './App.css';
 import { Card, CardTitle, CardText } from 'reactstrap';
 import logo from '../logo.jpg'
 
-// import DeleteFriend from './DeleteFriend'
-// import UpdateFriend from './UpdateFriend'
-// import AddFriend from './AddFriend'
-// import PrivateRoute from './PrivateRoute'
-
-// import Loader from 'react-loader-spinner'
-
 import './App.css';
-import { Nav, NavItem, NavLink } from 'reactstrap';
 import { Badge, Button, Form, FormGroup, Label, Input } from 'reactstrap'
-
-
-
-// import { BrowserRouter as Route } from "react-router-dom";
-
 
 
 class Smurfs extends React.Component {

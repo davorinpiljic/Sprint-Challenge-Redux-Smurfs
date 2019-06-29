@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const store = createStore(
-  reducer, // this is the most basic reducer. A function that returns and object. Replace it.
+  reducer, 
   applyMiddleware(thunk, logger)
 );
 

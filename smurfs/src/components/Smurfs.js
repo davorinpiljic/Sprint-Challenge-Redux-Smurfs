@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getSmurfs, addSmurf, updateSmurf, changeUpdate } from '../actions'
+import { getSmurfs, addSmurf, updateSmurf, changeUpdate, deleteSmurf } from '../actions'
 // import DeleteFriend from './DeleteFriend'
 // import UpdateFriend from './UpdateFriend'
 // import AddFriend from './AddFriend'
@@ -52,7 +52,11 @@ class Smurfs extends React.Component {
 
     changeUpdate = (event, smurf) => {
         this.setState({newSmurf: smurf})
-        this.props.updateSmurf(smurf)
+        this.props.changeUpdate()
+
+    }
+    deleteSmurf = (event, smurf) => {
+        this.props.deleteSmurf(smurf)
 
     }
 
@@ -79,6 +83,7 @@ class Smurfs extends React.Component {
                     onChange={this.handleChange}/>
                     <br></br>
             <Button color="warning" onClick={this.handleUpdateSubmit}>Update Smurf</Button>
+            
 
             </FormGroup>
         </Form>
@@ -91,6 +96,7 @@ class Smurfs extends React.Component {
                     <h4 key={key}>
                         {smurf.name}
                         <Badge onClick={(event) => this.changeUpdate(event, smurf)} color="secondary" size="sm">update</Badge>
+                        <Button color="danger" onClick={(event) => this.deleteSmurf(event, smurf)}>Delete Smurf</Button>
                     </h4>
                     )
                 })}</h1>
@@ -129,4 +135,4 @@ const mapState = state => {
     }
 }
 
-export default connect(mapState, {getSmurfs, addSmurf, updateSmurf, changeUpdate})(Smurfs)
+export default connect(mapState, {getSmurfs, addSmurf, updateSmurf, changeUpdate, deleteSmurf})(Smurfs)

@@ -4,8 +4,9 @@ export const FETCHING = 'FETCHING'
 export const CREATING = 'CREATING' 
 export const DELETING = 'DELETING'
 export const UPDATING = 'UPDATING' 
+export const NOT_UPDATING = 'NOT_UPDATING' 
+
 export const DATA_SUCCESS = 'DATA_SUCCESS' 
-export const UPDATE_SUCCESS = 'UPDATE_SUCCESS' 
 
 export const DATA_FAIL = 'DATA_FAIL' 
 
@@ -35,14 +36,14 @@ export const addSmurf = (newSmurf) => dispatch => {
 
 export const updateSmurf = (newSmurf) => dispatch => {
   dispatch({type: FETCHING})
-  dispatch({type: UPDATING})
+  dispatch({type: NOT_UPDATING})
 
-  console.log(newSmurf)
   axios
     .put(`http://localhost:3333/smurfs/${newSmurf.id}`, newSmurf)
     .then(response => {
-      dispatch({type: UPDATE_SUCCESS, payload: response.data})
+      dispatch({type: DATA_SUCCESS, payload: response.data})
     })
+
     .catch(error => {
       dispatch({type: DATA_FAIL, payload: error})
     })
@@ -50,7 +51,22 @@ export const updateSmurf = (newSmurf) => dispatch => {
 
 export const changeUpdate = () => dispatch => {
   dispatch({type: UPDATING})
+
 }
+export const deleteSmurf = (deleteSmurf) => dispatch => {
+  dispatch({type: FETCHING})
+
+  axios
+    .delete(`http://localhost:3333/smurfs/${deleteSmurf.id}`, deleteSmurf)
+    .then(response => {
+      dispatch({type: DATA_SUCCESS, payload: response.data})
+    })
+
+    .catch(error => {
+      dispatch({type: DATA_FAIL, payload: error})
+    })
+}
+
 
 
 

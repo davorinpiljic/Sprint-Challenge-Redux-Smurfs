@@ -1,4 +1,4 @@
-import { UPDATE_SUCCESS, FETCHING, CREATING, UPDATING, DELETING, DATA_SUCCESS, DATA_FAIL } from '../actions'
+import { FETCHING, CREATING, UPDATING, NOT_UPDATING, DELETING, DATA_SUCCESS, DATA_FAIL } from '../actions'
 
 
 const initialState = {
@@ -22,6 +22,7 @@ const reducer = (state = initialState, action) =>{
             ...state,
             smurfs: action.payload,
 
+
           }
         }
         case DATA_FAIL: {
@@ -41,15 +42,14 @@ const reducer = (state = initialState, action) =>{
 
           }
         }
-        case UPDATE_SUCCESS: {
+        case NOT_UPDATING: {
           return {
             ...state,
-            smurfs: action.payload,
-
+            updatingSmurf: false,
           }
         }
         case DELETING: {
-        return {
+          return {
             ...state,
           }
         }

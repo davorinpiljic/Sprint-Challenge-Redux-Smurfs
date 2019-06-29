@@ -1,7 +1,28 @@
 .App {
   text-align: center;
+  color: white;
+  background-color: gray;
 }
 
+.navimage {
+  height: 10%;
+  width: 10%;
+}
+
+.smurfs {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-content: flex-start;
+  border: 3px white solid;
+  
+}
+.newform {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
